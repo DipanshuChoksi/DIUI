@@ -1,0 +1,31 @@
+{
+  "name": "@dipanshuchoksi/diui",
+  "version": "1.0.0",
+  "description": "This is a react re-usable component library providing customizability, accessibility and user-friendly components.",
+  "homepage": "https://github.com/DipanshuChoksi/DIUI#readme",
+  "bugs": {
+    "url": "https://github.com/DipanshuChoksi/DIUI/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DipanshuChoksi/DIUI.git"
+  },
+  "license": "ISC",
+  "author": "dipanshuchoksi",
+  "type": "commonjs",
+  "source": "src/index.ts",
+  "main": "dist/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "parcel watch",
+    "build": "parcel build"
+  },
+  "devDependencies": {
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/react": "^16.3.0",
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19.2.2",
+    "parcel": "^2.16.1",
+    "vitest": "^3.2.4"
+  }
+}
