@@ -1,3 +1,3 @@
 export function greeting(name: string) {
-  return "Hello " + name + ", I am Dipanshu Choksi";
+  return 'Hello ' + name + ', I am Dipanshu Choksi';
 }
