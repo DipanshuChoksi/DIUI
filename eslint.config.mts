@@ -4,9 +4,9 @@ import react from "eslint-plugin-react";
 import reactHooks from "eslint-plugin-react-hooks";
 import importPlugin from "eslint-plugin-import";
 import prettier from "eslint-plugin-prettier";
+import globals from "globals";
 
 export default [
-  // Ignore build output
   {
     ignores: ["dist", "build", "coverage"],
   },
@@ -14,19 +14,16 @@ export default [
   // Base JS rules
   js.configs.recommended,
 
-  // ---------------------------------------------
-  // TypeScript + React (TYPE-AWARE, src only)
-  // ---------------------------------------------
   {
     files: ["src/**/*.{ts,tsx}"],
     languageOptions: {
+      parser: tseslint.parser,
       parserOptions: {
         project: "./tsconfig.json",
         ecmaFeatures: { jsx: true },
       },
     },
     plugins: {
-      // 🔑 THIS WAS MISSING
       "@typescript-eslint": tseslint.plugin,
       react,
       "react-hooks": reactHooks,
@@ -37,28 +34,34 @@ export default [
       react: { version: "detect" },
     },
     rules: {
-      // React
       "react/react-in-jsx-scope": "off",
       "react/jsx-props-no-spreading": "off",
 
-      // Hooks
       "react-hooks/rules-of-hooks": "error",
       "react-hooks/exhaustive-deps": "warn",
 
-      // Imports
       "import/prefer-default-export": "off",
 
-      // TypeScript
       "@typescript-eslint/no-unused-vars": "warn",
       "@typescript-eslint/explicit-module-boundary-types": "off",
 
-      // Misc
       "no-console": "warn",
       "prettier/prettier": "warn",
     },
   },
 
-  // Config files (non-type-aware)
+  {
+    files: ["**/*.test.{ts,tsx}", "**/*.spec.{ts,tsx}"],
+    languageOptions: {
+      globals: {
+        ...globals.browser,
+        ...globals.es2021,
+        ...globals.node,
+        ...globals.vitest,
+      },
+    },
+  },
+
   {
     files: ["*.config.ts", "*.config.js", "vitest.setup.ts"],
     languageOptions: {
